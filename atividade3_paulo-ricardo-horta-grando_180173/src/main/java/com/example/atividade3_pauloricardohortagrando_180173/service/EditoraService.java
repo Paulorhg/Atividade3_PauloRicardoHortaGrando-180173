@@ -22,4 +22,11 @@ public class EditoraService {
         repository.save(editora);
     }
     
+    public Editora getEditoraById(Integer id) {
+		return repository.findById(id).get();
+	}
+
+	public void remover(Editora editora) {
+        repository.delete(editora);
+	}
 }

@@ -22,4 +22,12 @@ public class LivroService {
     public void salvar(Livro livro){
         repository.save(livro);
     }
+
+    public Livro getLivroById(Integer id) {
+		return repository.findById(id).get();
+	}
+
+	public void remover(Livro livro) {
+        repository.delete(livro);
+	}
 }

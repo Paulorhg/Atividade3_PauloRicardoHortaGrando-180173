@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.UniqueConstraint;
 
 /**
  * Livro
@@ -29,7 +31,12 @@ public class Livro implements Serializable{
     private Editora editora;
 
     @ManyToMany
-    @JoinColumn(name="ID_Autor")
+    @JoinTable(
+        name="LivrosAutores", 
+        uniqueConstraints = @UniqueConstraint(columnNames = { "id_livro", "id_autor" }),
+        joinColumns        = @JoinColumn(name = "id_livro"), 
+        inverseJoinColumns = @JoinColumn(name = "id_autor")
+    )
     private List<Autor> autores;
 
     public int getId() {

@@ -21,4 +21,12 @@ public class AutorService {
     public void salvar(Autor autor){
         repository.save(autor);
     }
+
+    public Autor getAutorById(Integer id) {
+		return repository.findById(id).get();
+	}
+
+	public void remover(Autor autor) {
+        repository.delete(autor);
+	}
 }
