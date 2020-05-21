@@ -4,11 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livro</title>
+
+    <style>
+        table {
+            border: 1px solid black;
+        }
+
+        table td {
+            border: 1px solid black;
+            padding-right: 10px;
+        }
+    </style>
+    
 </head>
 <body>
     <h1>Livro</h1>
     <button onclick="window.location.href = '/'">Menu</button>
     <button onclick="window.location.href = '/autores'">Autores</button>
     <button onclick="window.location.href = '/editoras'">Editoras</button>
+
+    <br>
+    <br>
+
+    <form th:action="@{/salvarLivro}" th:object="${livro}" method="POST">
+        <label>Nome:</label>
+        <input type="text" placeholder="Digite o nome" th:value="${livro.nome}" name="nome" required/>
+        
+        <label>Autor:</label>
+
+        <select th:field="${livro.autores}" required>
+            <option value="">Escolha o Autor</option>
+            <option th:each="autor : ${autores}"
+                        th:value="${autor.id}"
+                        th:text="${autor.nome}">
+            </option>
+        </select>
+
+        <label>Editora:</label>
+
+        <select th:field="${livro.editora}" required>
+            <option value="">Escolha a Editora</option>
+            <option th:each="editora : ${editoras}"
+                        th:value="${editora.id}"
+                        th:text="${editora.nome}">
+            </option>
+        </select>
+
+
+        <input type="submit" value="Salvar" />
+        <input type="reset"  value="Limpar" />
+    </form>
+    </form>
 </body>
 </html>

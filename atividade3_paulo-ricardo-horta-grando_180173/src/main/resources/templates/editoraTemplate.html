@@ -4,11 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editora</title>
+    <style>
+        table {
+            border: 1px solid black;
+        }
+
+        table td {
+            border: 1px solid black;
+            padding-right: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Editora</h1>
     <button onclick="window.location.href = '/'">Menu</button>
     <button onclick="window.location.href = '/livros'">Livros</button>
     <button onclick="window.location.href = '/autores'">Autores</button>
+
+    <br><br>
+    <h2>Cadastrar nova Editora</h2>
+    <form th:action="@{/salvarEditora}" method="POST">
+        <label>Nome:</label><input type="text" name="nome" required/>
+        <label>Ano de Fundação:</label><input type="number" name="ano" required />
+        <input type="submit" value="Salvar" />
+    </form>
+
+    <br><br>
+
+    <h2>Editoras cadastradas</h2>
+    <table>
+        <tr>
+            <th>Id Editora</th>
+            <th>Nome</th>
+            <th>Ano de Fundação</th>
+            <th>Detalhes</th>
+        </tr>
+        <tr th:each="editora : ${editoras}">
+            <td th:text="${editora.id}"></td>
+            <td th:text="${editora.nome}"></td>
+            <td th:text="${editora.ano}"></td>
+            <td> <a th:href="@{'/detalhesEditora/' + ${editora.id}}">Detalhes</a></td>
+        </tr>
+    </table>
 </body>
 </html>

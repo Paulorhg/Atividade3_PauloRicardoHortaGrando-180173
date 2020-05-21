@@ -2,7 +2,6 @@ package com.example.atividade3_pauloricardohortagrando_180173.controller;
 
 import com.example.atividade3_pauloricardohortagrando_180173.entity.Autor;
 import com.example.atividade3_pauloricardohortagrando_180173.service.AutorService;
-import com.example.atividade3_pauloricardohortagrando_180173.service.LivroService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,16 +17,12 @@ public class AutorController {
     @Autowired
     private AutorService autorService;
 
-    @Autowired
-    private LivroService livroService;
-
     @GetMapping("/autores")
     public ModelAndView getAutores(){
         ModelAndView mv = new ModelAndView("autorTemplate");
 
         mv.addObject("autor",  new Autor());
-        mv.addObject("autor", autorService.getAutores());
-        mv.addObject("livros", livroService.getLivros());
+        mv.addObject("autores", autorService.getAutores());
         
         return mv;
     }
@@ -38,7 +33,7 @@ public class AutorController {
         Autor autor = autorService.getAutorById(id);
         autorService.remover(autor);
 
-        return "redirect:/autor";
+        return "redirect:/autores";
     }
 
     @GetMapping("/editarAutor")
@@ -60,7 +55,7 @@ public class AutorController {
         
         autorService.salvar(autor);
       
-        return "redirect:/autor";
+        return "redirect:/autores";
     }
 
 }

@@ -21,7 +21,7 @@ public class Autor implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nome;
-    private String nacionalidade;
+    private String nascionalidade;
 
     @ManyToMany
     @JoinTable(
@@ -49,11 +49,11 @@ public class Autor implements Serializable{
     }
 
     public String getNacionalidade() {
-        return nacionalidade;
+        return nascionalidade;
     }
 
     public void setNacionalidade(String nacionalidade) {
-        this.nacionalidade = nacionalidade;
+        this.nascionalidade = nacionalidade;
     }
 
     public List<Livro> getLivros() {
@@ -66,7 +66,7 @@ public class Autor implements Serializable{
 
     @Override
     public String toString() {
-        return "Autor [id=" + id + ", livros=" + livros + ", nacionalidade=" + nacionalidade + ", nome=" + nome + "]";
+        return "Autor [id=" + id + ", livros=" + livros + ", nacionalidade=" + nascionalidade + ", nome=" + nome + "]";
     }
 
     

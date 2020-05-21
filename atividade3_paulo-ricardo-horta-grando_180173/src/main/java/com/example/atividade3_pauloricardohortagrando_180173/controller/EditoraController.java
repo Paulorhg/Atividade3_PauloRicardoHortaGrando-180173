@@ -38,7 +38,7 @@ public class EditoraController {
         Editora editora = editoraService.getEditoraById(id);
         editoraService.remover(editora);
 
-        return "redirect:/editora";
+        return "redirect:/editoras";
     }
 
     @GetMapping("/editarEditora")
@@ -60,6 +60,6 @@ public class EditoraController {
         
         editoraService.salvar(editora);
       
-        return "redirect:/editora";
+        return "redirect:/editoras";
     }
 }
