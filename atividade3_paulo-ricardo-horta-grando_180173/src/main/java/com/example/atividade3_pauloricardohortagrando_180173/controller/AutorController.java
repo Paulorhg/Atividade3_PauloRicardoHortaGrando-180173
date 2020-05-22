@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,14 +37,26 @@ public class AutorController {
         return "redirect:/autores";
     }
 
-    @GetMapping("/editarAutor")
-    public ModelAndView editarAutor(@RequestParam Integer id){
+    @GetMapping("/detalheAutor/{id}")
+    public ModelAndView detalheAutor(@PathVariable(name = "id") Integer id){
+        
+        ModelAndView mv = new ModelAndView("detalheAutor");
+    
+        Autor autor = autorService.getAutorById(id);
+        mv.addObject("autor",  autor);
+        mv.addObject("livros", autor.getLivros());
+
+        return mv;
+   
+    }
+
+    @GetMapping("/editarAutor/{id}")
+    public ModelAndView editarAutor(@PathVariable(name = "id") Integer id){
         
         ModelAndView mv = new ModelAndView("autorEdit");
     
         Autor autor = autorService.getAutorById(id); 
         mv.addObject("autor",  autor);
-        mv.addObject("autores", autorService.getAutores());
 
         return mv;
    

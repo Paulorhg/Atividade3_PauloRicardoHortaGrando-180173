@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autor</title>
+  
+</head>
+
+<body>
+    <h1>Editar Autor</h1>    
+    <button onclick="window.location.href = '/'">Menu</button>
+    <button onclick="window.location.href = '/livros'">Livros</button>
+    <button onclick="window.location.href = '/autores'">Autores</button>
+    <button onclick="window.location.href = '/editoras'">Editoras</button>
+
+    <br>
+    <br>
+    <form th:action="@{/salvarAutor}" th:object="${autor}" method="POST" id="formAutor">
+      
+        <label>Id:</label> <span th:text="${autor.id}"></span>
+        <br>
+        <input type="hidden" th:value="${autor.id}" th:field="${autor.id}" name="id" />
+        <input type="hidden" th:value="${autor.livros}" th:field="${autor.livros}" name="id" />
+      
+        <label>Nome:</label>
+        <input type="text" placeholder="Digite o nome" th:value="${autor.nome}" name="nome" required/>
+        <br>  
+        <label>Nascionalidade:</label>
+        <input type="text" placeholder="Digite a nascionalidade" th:value="${autor.nascionalidade}" name="nascionalidade" required/>
+    
+        <br>
+        <br>
+        <input type="submit" value="Salvar" />
+        <input type="reset"  value="Cancelar"/>
+    </form>
+    
+</body>
+
+</html>

@@ -13,6 +13,10 @@
             border: 1px solid black;
             padding-right: 10px;
         }
+
+        input {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -38,12 +42,16 @@
             <th>Nome</th>
             <th>Ano de Fundação</th>
             <th>Detalhes</th>
+            <th>Remover</th>
+            <th>Editar</th>
         </tr>
         <tr th:each="editora : ${editoras}">
             <td th:text="${editora.id}"></td>
             <td th:text="${editora.nome}"></td>
             <td th:text="${editora.ano}"></td>
-            <td> <a th:href="@{'/detalhesEditora/' + ${editora.id}}">Detalhes</a></td>
+            <td> <a th:href="@{'/detalheEditora/' + ${editora.id}}">Detalhes</a></td>
+            <td> <a th:href="@{'/removerEditora?id=' + ${editora.id}}">Remover</a></td>
+            <td> <a th:href="@{'/editarEditora/' + ${editora.id}}">Editar</a></td>
         </tr>
     </table>
 </body>

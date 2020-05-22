@@ -48,12 +48,12 @@ public class Autor implements Serializable{
         this.nome = nome;
     }
 
-    public String getNacionalidade() {
+    public String getNascionalidade() {
         return nascionalidade;
     }
 
-    public void setNacionalidade(String nacionalidade) {
-        this.nascionalidade = nacionalidade;
+    public void setNascionalidade(String nascionalidade) {
+        this.nascionalidade = nascionalidade;
     }
 
     public List<Livro> getLivros() {
@@ -66,7 +66,7 @@ public class Autor implements Serializable{
 
     @Override
     public String toString() {
-        return "Autor [id=" + id + ", livros=" + livros + ", nacionalidade=" + nascionalidade + ", nome=" + nome + "]";
+        return "Autor [id=" + id + ", nascionalidade=" + nascionalidade + ", nome=" + nome + "]";
     }
 
     

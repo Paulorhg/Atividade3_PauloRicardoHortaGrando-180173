@@ -59,7 +59,7 @@ public class Editora implements Serializable{
 
     @Override
     public String toString() {
-        return "Editora [ano=" + ano + ", id=" + id + ", livros=" + livros + ", nome=" + nome + "]";
+        return "Editora [ano=" + ano + ", id=" + id + ", nome=" + nome + "]";
     }
     
     

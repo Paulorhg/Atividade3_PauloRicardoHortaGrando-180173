@@ -14,6 +14,10 @@
             border: 1px solid black;
             padding-right: 10px;
         }
+
+        input {
+            margin-right: 10px;
+        }
     </style>
     
 </head>
@@ -29,7 +33,7 @@
     <h2>Cadastrar novo Autor</h2>
     <form th:action="@{/salvarAutor}" method="POST">
         <label>Nome:</label><input type="text" name="nome" required/>
-        <label>Nascionalidade:</label><input type="text" name="nascionalidade" required />
+        <label>Nascionalidade:</label><input type="text" name="nascionalidade" required/>
         <input type="submit" value="Salvar" />
     </form>
 
@@ -42,12 +46,16 @@
             <th>Nome</th>
             <th>Nascionalidade</th>
             <th>Detalhes</th>
+            <th>Remover</th>
+            <th>Editar</th>
         </tr>
         <tr th:each="autor:${autores}">
             <td th:text="${autor.id}"></td>
             <td th:text="${autor.nome}"></td>
             <td th:text="${autor.nascionalidade}"></td>
-            <td> <a th:href="@{'/detalhesAutor/' + ${autor.id}}">Detalhes</a></td>
+            <td> <a th:href="@{'/detalheAutor/' + ${autor.id}}">Detalhes</a></td>
+            <td> <a th:href="@{'/removerAutor?id=' + ${autor.id}}">Remover</a></td>
+            <td> <a th:href="@{'/editarAutor/' + ${autor.id}}">Editar</a></td>
         </tr>
     </table>
 </body>

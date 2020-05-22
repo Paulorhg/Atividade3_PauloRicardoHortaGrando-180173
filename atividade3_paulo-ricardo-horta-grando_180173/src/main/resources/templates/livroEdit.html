@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livro</title>
-
     <style>
         table {
             border: 1px solid black;
@@ -19,54 +19,56 @@
             margin-right: 10px;
         }
     </style>
-
 </head>
+
 <body>
-    <h1>Livro</h1>
+    <h1>Editar Livro</h1>    
     <button onclick="window.location.href = '/'">Menu</button>
+    <button onclick="window.location.href = '/livros'">Livros</button>
     <button onclick="window.location.href = '/autores'">Autores</button>
     <button onclick="window.location.href = '/editoras'">Editoras</button>
 
     <br>
     <br>
-
-    <form th:action="@{/salvarLivro}" th:object="${livro}" method="POST">
+    <form th:action="@{/salvarLivro}" th:object="${livro}" method="POST" id="formLivro">
+      
+        <label>Id:</label> <span th:text="${livro.id}"></span>
+        <br>
+        <input type="hidden" th:value="${livro.id}" th:field="${livro.id}" name="id" />
+        <input type="hidden" th:value="${livro.autores}" th:field="${livro.autores}" name="autores" />
         <label>Nome:</label>
         <input type="text" placeholder="Digite o nome" th:value="${livro.nome}" name="nome" required/>
-
+        <br>  
         <label>Editora:</label>
-
         <select th:field="${livro.editora}" required>
-            <option value="">Escolha a Editora</option>
+            <option value="">Escolha a Editora:</option>
             <option th:each="editora : ${editoras}"
                         th:value="${editora.id}"
                         th:text="${editora.nome}">
             </option>
         </select>
 
-
+        <br>
+        <br>
         <input type="submit" value="Salvar" />
-        <input type="reset"  value="Limpar" />
+        <input type="reset"  value="Cancelar"/>
+    </form>
+
+    <br>
+    <br>
+
+    <form th:action="@{/removerAutorLivro(id_livro=${livro.id})}" method="POST">
+        <label><b>Remover Autores:</b></label>
+        <select name="id" required>
+            <option value="">Escolha o Autor</option>
+            <option th:each="autor : ${autores}"
+                        th:value="${autor.id}"
+                        th:text="${autor.nome}">
+            </option>
+        </select>
+        <input type="submit" value="Remover Autor"/>
     </form>
     
-    <br><br>
-
-    <h2>Autores cadastrados</h2>
-    <table>
-        <tr>
-            <th>Id Autor</th>
-            <th>Nome</th>
-            <th>Detalhes</th>
-            <th>Remover</th>
-            <th>Editar</th>
-        </tr>
-        <tr th:each="livro:${livros}">
-            <td th:text="${livro.id}"></td>
-            <td th:text="${livro.nome}"></td>
-            <td> <a th:href="@{'/livroDetalhes/' + ${livro.id}}">Detalhes</a></td>
-            <td> <a th:href="@{'/removerLivro?id=' + ${livro.id}}">Remover</a></td>
-            <td> <a th:href="@{'/editarLivro/' + ${livro.id}}">Editar</a></td>
-        </tr>
-    </table>
 </body>
+
 </html>

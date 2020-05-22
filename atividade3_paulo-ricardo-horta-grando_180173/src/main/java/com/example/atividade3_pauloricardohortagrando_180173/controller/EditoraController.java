@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,14 +42,26 @@ public class EditoraController {
         return "redirect:/editoras";
     }
 
-    @GetMapping("/editarEditora")
-    public ModelAndView editarEditora(@RequestParam Integer id){
+    @GetMapping("/detalheEditora/{id}")
+    public ModelAndView detalhesEditora(@PathVariable(name = "id") Integer id){
+        
+        ModelAndView mv = new ModelAndView("detalheEditora");
+    
+        Editora editora = editoraService.getEditoraById(id); 
+        mv.addObject("editora",  editora);
+        mv.addObject("livros", editora.getLivros());
+
+        return mv;
+   
+    }
+
+    @GetMapping("/editarEditora/{id}")
+    public ModelAndView editarEditora(@PathVariable(name = "id") Integer id){
         
         ModelAndView mv = new ModelAndView("editoraEdit");
     
         Editora editora = editoraService.getEditoraById(id); 
         mv.addObject("editora",  editora);
-        mv.addObject("editoras", editoraService.getEditoras());
 
         return mv;
    
